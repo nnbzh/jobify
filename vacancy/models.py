@@ -13,7 +13,7 @@ class ExperienceType(models.Model):
         verbose_name_plural = "Experience Types"
 
 
-class BusynessType(models.Model):
+class BusinessType(models.Model):
     name = models.CharField(max_length=100)
 
     class Meta:
@@ -24,7 +24,7 @@ class BusynessType(models.Model):
 class Vacancy(models.Model):
     name = models.CharField(max_length=512)
     experience_type = models.ForeignKey(ExperienceType, on_delete=models.CASCADE, related_name="vacancy")
-    busyness_type = models.ForeignKey(BusynessType, on_delete=models.CASCADE, related_name="vacancy")
+    busyness_type = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="vacancy")
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="vacancies")
 
     class Meta:
@@ -34,7 +34,7 @@ class Vacancy(models.Model):
 
 class Responsibility(models.Model):
     name = models.CharField(max_length=512)
-    vacancy = models.ForeignKey(BusynessType, on_delete=models.CASCADE, related_name="responsibilities")
+    vacancy = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="responsibilities")
 
     class Meta:
         verbose_name = "Responsibility"
@@ -43,7 +43,7 @@ class Responsibility(models.Model):
 
 class Requirement(models.Model):
     name = models.CharField(max_length=512)
-    vacancy = models.ForeignKey(BusynessType, on_delete=models.CASCADE, related_name="requirements")
+    vacancy = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="requirements")
 
     class Meta:
         verbose_name = "Requirement"
@@ -52,7 +52,7 @@ class Requirement(models.Model):
 
 class Condition(models.Model):
     name = models.CharField(max_length=512)
-    vacancy = models.ForeignKey(BusynessType, on_delete=models.CASCADE, related_name="conditions")
+    vacancy = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="conditions")
 
     class Meta:
         verbose_name = "Condition"
