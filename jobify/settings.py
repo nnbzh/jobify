@@ -144,3 +144,34 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.User'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s -- %(asctime)s: %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s -- %(message)s'
+        }
+    },
+    'handlers': {
+        'file_handler': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'test.log',
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        }
+    },
+    'loggers': {
+        'main': {
+            'handlers': ['file_handler', 'console'],
+            'level': 'DEBUG'
+        }
+    }
+}

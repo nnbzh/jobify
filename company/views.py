@@ -4,7 +4,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import BasePermission
 
 from company.models import Company, Contact
-from company.serializers import CompanySerializer, ContactSerializer
+from company.serializers import CompanySerializer, ContactSerializer, InviteSerializer
 from utils.api_response import success_response, error_response
 from utils.permissions import IsCompany
 
@@ -61,6 +61,22 @@ def create_contacts(request, pk):
     if serializer.is_valid():
         serializer.save()
 
-    Company.objects.filter(id=pk).update(contact_id=serializer.data.get('id'))
+    return success_response(serializer.data, '')
+
+
+@api_view(['POST'])
+@permission_classes([IsCompany])
+def invite(request, pk):
+    company = request.user.company.get()
+
+    if pk != company.id:
+        return error_response("That's not your company", 400)
+
+    obj = dict(request.data)
+    obj['company_id'] = pk
+    serializer = InviteSerializer(data=obj)
+
+    if serializer.is_valid():
+        serializer.save()
 
     return success_response(serializer.data, '')

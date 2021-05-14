@@ -1,4 +1,8 @@
+import logging
+
 from rest_framework.response import Response
+
+logger = logging.getLogger('main')
 
 
 def success_response(data, message, status=200):
@@ -12,6 +16,7 @@ def success_response(data, message, status=200):
 
 
 def error_response(message, status):
+    logger.error(f'Error occurred: {message}. CODE: {status}')
     return Response(
         {
             'success': False,

@@ -17,11 +17,17 @@ class BusinessTypeSerializer(serializers.ModelSerializer):
 
 class VacancySerializer(serializers.ModelSerializer):
     company_id = serializers.IntegerField(write_only=True)
+    experience_type_id = serializers.IntegerField(write_only=True)
+    business_type_id = serializers.IntegerField(write_only=True)
+
     company = CompanySerializer(read_only=True)
+    experience_type = ExperienceTypeSerializer(read_only=True)
+    business_type = BusinessTypeSerializer(read_only=True)
 
     class Meta:
         model = Vacancy
-        fields = '__all__'
+        fields = ('id', 'name', 'experience_type_id', 'experience_type',
+                  'business_type_id', 'business_type', 'company_id', 'company',)
 
 
 class ResponsibilitySerializer(serializers.ModelSerializer):
