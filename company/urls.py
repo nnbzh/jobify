@@ -1,14 +1,14 @@
 # Create your views here.
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from rest_framework_jwt.views import obtain_jwt_token
+from django.urls import path
 
-from company.views import CompanyViewSet
-from user import views
+# router = DefaultRouter()
+# router.register(r'companies', CompanyViewSet, basename='company')
+from company import views
 
-router = DefaultRouter()
-router.register(r'companies', CompanyViewSet, basename='company')
+# from company.views import CompanyViewSet
 
-urlpatterns = (
-    path('', include(router.urls)),
-)
+urlpatterns = [
+    path(r'companies', views.CompanyListAPIView.as_view()),
+    path(r'companies/<int:pk>', views.CompanyDetailsApiView.as_view()),
+    path(r'companies/<int:pk>/contacts', views.create_contacts),
+]

@@ -6,5 +6,5 @@ from app import views
 router = DefaultRouter()
 
 urlpatterns = [
-    path('regions', views.RegionApiView.as_view())
+    path(r'regions', views.RegionApiView.as_view())
 ]

@@ -8,7 +8,6 @@ apply for that vacancies as a user.
    * [Installation](#installation)
    * [API Documentation](#api-documentation)
 
-***
 ## Installation
 Clone this GitHub repository
 ```

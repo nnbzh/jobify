@@ -1,13 +1,18 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
+from rest_framework.validators import UniqueValidator
 
 from user.models import User
 
 
 class UserSerializer(serializers.Serializer):
-    email = serializers.CharField(max_length=300)
+    email = serializers.EmailField(max_length=300, validators=[
+        UniqueValidator(
+            queryset=User.objects.all(),
+            message='Such email address already exists'
+        )])
     is_company = serializers.BooleanField(default=False)
-    password = serializers.CharField(max_length=50, write_only=True)
+    password = serializers.CharField(max_length=50)
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('name', instance.name)

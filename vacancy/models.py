@@ -24,7 +24,7 @@ class BusinessType(models.Model):
 class Vacancy(models.Model):
     name = models.CharField(max_length=512)
     experience_type = models.ForeignKey(ExperienceType, on_delete=models.CASCADE, related_name="vacancy")
-    busyness_type = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="vacancy")
+    business_type = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="vacancy")
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="vacancies")
 
     class Meta:

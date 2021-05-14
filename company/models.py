@@ -18,11 +18,10 @@ class Company(models.Model):
     name = models.CharField(max_length=512)
     bin = models.IntegerField()
     description = models.TextField()
-    logo = models.ImageField()
     region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name="company")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="company")
-    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, related_name="company")
-    create_date = models.DateTimeField(blank=True)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, related_name="company", blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
 
     objects = CompanyManager()
 
