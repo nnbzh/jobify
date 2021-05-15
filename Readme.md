@@ -27,4 +27,4 @@ python manage.py runserver
 
 ## API documentation
 
-Import Postman collection from [here]()
+Import Postman collection from [here](https://www.getpostman.com/collections/f8e2d8fa6ca23c8a85a9)

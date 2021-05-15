@@ -10,5 +10,7 @@ from company import views
 urlpatterns = [
     path(r'companies', views.CompanyListAPIView.as_view()),
     path(r'companies/<int:pk>', views.CompanyDetailsApiView.as_view()),
-    path(r'companies/<int:pk>/contacts', views.create_contacts),
+    path(r'companies/contacts', views.create_contacts),
+    path(r'companies/invite', views.invite),
+    path(r'companies/respond', views.respond),
 ]

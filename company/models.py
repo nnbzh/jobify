@@ -39,6 +39,15 @@ class Invite(models.Model):
         verbose_name_plural = "Invites"
 
 
+class Respond(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="respond")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="respond")
+
+    class Meta:
+        verbose_name = "Respond"
+        verbose_name_plural = "Responds"
+
+
 class Notification(models.Model):
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')

@@ -34,7 +34,7 @@ class Vacancy(models.Model):
 
 class Responsibility(models.Model):
     name = models.CharField(max_length=512)
-    vacancy = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="responsibilities")
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name="responsibilities")
 
     class Meta:
         verbose_name = "Responsibility"
@@ -43,7 +43,7 @@ class Responsibility(models.Model):
 
 class Requirement(models.Model):
     name = models.CharField(max_length=512)
-    vacancy = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="requirements")
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name="requirements")
 
     class Meta:
         verbose_name = "Requirement"
@@ -52,7 +52,7 @@ class Requirement(models.Model):
 
 class Condition(models.Model):
     name = models.CharField(max_length=512)
-    vacancy = models.ForeignKey(BusinessType, on_delete=models.CASCADE, related_name="conditions")
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name="conditions")
 
     class Meta:
         verbose_name = "Condition"

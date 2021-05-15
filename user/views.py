@@ -12,7 +12,7 @@ from .serializers import UserAvatarSerializer
 @api_view(['POST'])
 def register(request):
     serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
+    if serializer.is_valid(raise_exception=True):
         if serializer.data['is_company']:
             User.objects.create_company(serializer.data['email'], serializer.data['password'])
         else:
@@ -28,7 +28,7 @@ class UserAvatarUpload(APIView):
 
     def post(self, request):
         serializer = UserAvatarSerializer(data=request.data, instance=request.user)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             return success_response(serializer.data, '')
         else:

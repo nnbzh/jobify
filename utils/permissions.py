@@ -6,6 +6,6 @@ class IsCompany(IsAuthenticated):
         return bool(request.user and request.user.is_company)
 
 
-# class IsCompanyOwner(IsCompany):
-#     def has_permission(self, request, view):
-#         return request.user.company.get().id == request+'.'
+class IsCompanyOwner(IsCompany):
+    def has_permission(self, request, view):
+        return request.user.company.get().id == request.data.get('company_id')

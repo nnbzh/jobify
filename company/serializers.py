@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from app.serializers import RegionSerializer
-from company.models import Company, Contact, Invite
+from company.models import Company, Contact, Invite, Respond
 from user.serializers import UserSerializer
 
 
@@ -48,4 +48,16 @@ class InviteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Invite
+        fields = '__all__'
+
+
+class RespondSerializer(serializers.ModelSerializer):
+    company = CompanySerializer(read_only=True)
+    user = UserSerializer(read_only=True)
+
+    company_id = serializers.IntegerField(write_only=True)
+    user_id = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = Respond
         fields = '__all__'
